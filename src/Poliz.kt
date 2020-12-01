@@ -12,7 +12,6 @@ fun main(){
     while(true){
         println("Write expression: ")
         val exp = readLine()
-        println(preprocess(exp!!))
         val res = process(exp!!)
         println(res.toString())
         if(res.none { (it is String && it != "Fn") || it == '=' })
@@ -99,7 +98,8 @@ fun process (exp: String ): Queue<Any> {
             '(' -> stack.push(t)
             ')' -> {
                 while (stack.peek() != '(') res.add(stack.pop());
-                stack.pop() }
+                stack.pop()
+            }
             '[' -> { stack.push(t); stack.push(2) }
             '{' -> { stack.push(t); stack.push(2) }
             ',' -> {
